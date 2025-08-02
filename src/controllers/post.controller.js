@@ -31,6 +31,16 @@ async function createPostController(req, res) {
   res.status(201).json({ message: "Post caption created successfully", post });
 }
 
+async function getPostsController(req, res) {
+  const posts = await postModel.find().populate("user", "name email");
+  if (!posts || posts.length === 0) {
+    return res.status(404).json({ message: "No posts found" });
+  }
+
+  res.status(200).json({ message: "Posts retrieved successfully", posts });
+}
+
 module.exports = {
   createPostController,
+  getPostsController,
 };
