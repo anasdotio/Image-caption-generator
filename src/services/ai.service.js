@@ -20,7 +20,6 @@ async function genAi(imageBuffer) {
     ],
     config: {
       systemInstruction: `
-
       You are an expert in generating captions for images.
 
       you generate single caption for the image provided in the input.
