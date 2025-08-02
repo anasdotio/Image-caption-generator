@@ -1,6 +1,8 @@
 const imageKit = require("../config/imageKit.js");
 
 const uploadFile = async (fileBuffer, fileName) => {
+  console.log(fileName);
+
   try {
     const response = await imageKit.upload({
       file: fileBuffer,

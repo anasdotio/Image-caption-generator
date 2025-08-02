@@ -18,6 +18,9 @@ async function genAi(imageBuffer) {
       },
       { text: "caption this image in 10 words" },
     ],
+    config: {
+      systemInstruction: ''
+    }
   });
   return response.text;
 }

@@ -1,9 +1,15 @@
 const postModel = require("../models/post.model.js");
 const genAi = require("../services/ai.service.js");
 const uploadFile = require("../services/imageKit.service.js");
+const path = require("path");
+const { v4: uuidv4 } = require("uuid");
 
 async function createPostController(req, res) {
   const file = req.file;
+
+  const fileextension = path.extname(file.originalname).toLowerCase();
+
+  const uniqueFileName = `${uuidv4()}${fileextension}`;
 
   if (!file) return res.status(400).json({ message: "no file uploaded" });
 
@@ -11,8 +17,8 @@ async function createPostController(req, res) {
 
   if (!caption)
     return res.status(400).json({ message: "error generating caption" });
-  
-  const { url } = await uploadFile(file.buffer, file.originalname);
+
+  const { url } = await uploadFile(file.buffer, uniqueFileName);
 
   if (!url) return res.status(400).json({ message: "error uploading file" });
 
