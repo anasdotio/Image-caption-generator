@@ -10,7 +10,6 @@ const uploadFile = async (fileBuffer, fileName) => {
       folder: "aicaption",
       useUniqueFileName: true,
     });
-
     return response;
   } catch (err) {
     console.error("An error occurred during upload:", err);
